@@ -11,4 +11,12 @@ router.get('/', function(req, res, next) {
   res.send(Kyle);
 });
 
+router.get('/post', function (req, res, next) {
+  res.send('Thanks for asking for data, none provided');
+})
+
+router.post('/post', function (req, res, next) {
+  res.render('post', {userName: req.body.userName, email: req.body.email});
+})
+
 module.exports = router;
