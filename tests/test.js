@@ -1,5 +1,8 @@
 var expect = require('expect');
 var math = require('./math.js');
+var app = require('../app.js');
+var request = require('supertest');
+
 
 describe('adder', function () {
 
@@ -23,4 +26,26 @@ describe('multiplyer', function () {
         expect(math.multiplyer(20, 51)).toBeA('number');
     });
 
+})
+
+describe('GET /', function(){
+  it('respond with text/html', function(done){
+    request(app)
+      .get('/')
+      .set('Accept', 'text/html')
+      .expect('Content-Type', /text/)
+      .expect(200, done);
+  })
+})
+
+describe('POST /post', function(){
+  it('respond with json', function(done){
+    request(app)
+      .post('/post')
+      .send({userName: 'Kyle Hill', email: 'kyle@jogomarketing.com'})
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect({userName: 'Kyle Hill', email: 'kyle@jogomarketing.com'})
+      .expect(200, done);
+  })
 })
