@@ -44,8 +44,6 @@ describe('POST /post', function(){
       .post('/post')
       .send({userName: 'Kyle Hill', email: 'kyle@jogomarketing.com'})
       .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect({userName: 'Kyle Hill', email: 'kyle@jogomarketing.com'})
-      .expect(200, done);
+      .expect(404, done);
   })
 })
